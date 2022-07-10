@@ -1,0 +1,63 @@
+#include<iostream>
+#include<fstream>
+#include<string.h>
+
+using namespace std;
+
+int main()
+{
+    int i, n;
+    char name[20], name2[20];
+    ofstream fout;
+    ifstream fin1, fin2;
+    fout.open("record1.txt");
+    cout << "Enter the no of names to enter in record1: ";
+    cin >> n;
+    cout << "Enter " << n << " names in ascending order: \n";
+    for(i=0; i<n; i++)
+    {
+        cin >> name;
+        fout << name << endl;
+    }
+    fout.close();
+    fout.open("record2.txt");
+    cout << "Enter the no of names to enter in record2: ";
+    cin >> n;
+    cout << "Enter " << n << " names in ascending order: \n";
+    for(i=0; i<n; i++)
+    {
+        cin >> name;
+        fout << name << endl;
+    }
+    fout.close();
+    fin1.open("record1.txt");
+    fin2.open("record2.txt");
+    fout.open("output.txt");
+    fin1 >> name;
+    fin2 >> name2;
+    while(!fin1.eof() && !fin2.eof())
+    {
+        if(strcmp(name, name2) == 0)
+        {
+            fin1 >> name;
+            fin2 >> name2;
+            fout << name << endl;
+            cout <<name <<endl;
+        }
+        
+        else if(strcmp(name, name2) < 0)
+        {
+            fin1 >> name;
+        }
+        
+        else
+        {
+            fin2 >> name2;
+        }
+    }
+    fin1.close();
+    fin2.close();
+    fout.close();
+    cout << "Done!";
+    return 0;
+}
